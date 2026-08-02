@@ -79,7 +79,7 @@ function extractHost(input: RequestLike): string {
   return "";
 }
 
-export function getDomainSuffix(input: RequestLike): string {
+export default function domainame(input: RequestLike): string {
   const host = extractHost(input).trim();
 
   if (!host) return "";

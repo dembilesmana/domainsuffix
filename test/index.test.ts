@@ -1,13 +1,13 @@
 import { describe, expect, test } from "bun:test";
-import { getDomainSuffix } from "../src/index";
+import domainame from "../src";
 
 type CaseType = Array<{
   name: string;
-  input: Parameters<typeof getDomainSuffix>[0];
+  input: Parameters<typeof domainame>[0];
   expected: string;
 }>;
 
-describe("getDomainSuffix()", () => {
+describe("domainame()", () => {
   const cases: CaseType = [
     {
       name: "removes port from localhost",
@@ -51,7 +51,7 @@ describe("getDomainSuffix()", () => {
 
   for (const { name, input, expected } of cases) {
     test(name, () => {
-      expect(getDomainSuffix(input)).toBe(expected);
+      expect(domainame(input)).toBe(expected);
     });
   }
 });
