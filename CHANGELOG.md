@@ -1,5 +1,11 @@
 # domainame
 
+## 1.0.3
+
+### Patch Changes
+
+- update tsconfig.ts
+
 ## 1.0.2
 
 ### Patch Changes
