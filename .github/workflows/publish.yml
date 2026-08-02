@@ -23,13 +23,16 @@ jobs:
 
   publish:
     needs: test
-    if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[release]')
+    if: github.event_name == 'workflow_dispatch' || github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
+      pull-requests: write
       id-token: write
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
@@ -41,5 +44,10 @@ jobs:
         run: bun install
       - name: Build package
         run: bun run build
-      - name: Publish to npm via trusted publishing
-        run: npm publish --provenance --access public
+      - name: Create release pull request or publish
+        uses: changesets/action@v1
+        with:
+          version: bun run version
+          publish: npm publish --provenance --access public
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
