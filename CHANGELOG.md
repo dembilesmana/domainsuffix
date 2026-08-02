@@ -1,5 +1,11 @@
 # domainame
 
+## 1.0.2
+
+### Patch Changes
+
+- cb0061d: Update domainame
+
 ## 1.0.1
 
 ### Patch Changes

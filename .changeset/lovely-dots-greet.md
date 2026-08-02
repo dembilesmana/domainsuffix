@@ -1,5 +1,0 @@
----
-"domainame": patch
----
-
-Update domainame
